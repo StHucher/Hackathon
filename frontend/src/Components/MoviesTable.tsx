@@ -7,5 +7,18 @@ type MoviesTableProps = {
 
 const MoviesTable: FC<MoviesTableProps> = ({movies}) => {
 
-    return()
+    return(
+        <div>
+
+        {
+
+           movies.map(m => 
+            {
+                return<p>{m.title}</p>
+            })
+        }
+        </div>
+
+    );
 }
+export default MoviesTable;

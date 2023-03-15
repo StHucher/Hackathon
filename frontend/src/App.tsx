@@ -1,19 +1,20 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
+import MoviesTable from './Components/MoviesTable'
 import './App.css'
+import { getMovies } from './Api'
+import { IMovies } from './Types/TypeInterface'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [movies,setmovies] = useState<IMovies[]>([] as IMovies[])
 
+  useEffect(() => {getMovies().then(data => setmovies(data))},[])
+console.log(movies);
   return (
     <div className="App">
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+       <MoviesTable movies={movies} />
       </div>
       <h1>Vite + React</h1>
       <div className="card">
