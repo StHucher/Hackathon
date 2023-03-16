@@ -2,32 +2,39 @@ import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import MoviesTable from './Components/MoviesTable'
 import './App.css'
-import { getMovies } from './Api'
+import { getMovies, addNewMovie, deleteMov } from './Api'
 import { IMovies } from './Types/TypeInterface'
+import { AddMovieForm } from './Components/AddMovieForm'
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [movies,setmovies] = useState<IMovies[]>([] as IMovies[])
+  const [movies,setMovies] = useState<IMovies[]>([] as IMovies[]);
+  const [deletedMovieId, setDeletedMovieId] = useState<number | null>(null);
 
-  useEffect(() => {getMovies().then(data => setmovies(data))},[])
-console.log(movies);
+  const handleAddNewMovie =async (newMovie: Partial<IMovies>) => {
+    const response = await addNewMovie(newMovie);
+    const movie = Array.isArray(response) ? response[0] : response;
+    console.log(movie);
+    setMovies(prevState => [...prevState, movie])
+  };
+
+  const handleDeleteMovie =async (movieId: number) => {
+    const response = await deleteMov(movieId);
+    const updatedMovies = movies.filter(m => m.id !== movieId);
+    setMovies(updatedMovies);
+  };
+
+  useEffect(() => {getMovies().then(data => setMovies(data))},[]);
+
+// console.log(movies);
+
   return (
     <div className="App">
+      <h1>My Collection of Movies</h1>
+
       <div>
-       <MoviesTable movies={movies} />
+      <AddMovieForm addNewMovie = {handleAddNewMovie}/>
+       <MoviesTable movies={movies} deleteMov={handleDeleteMovie}/>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
   )
 }

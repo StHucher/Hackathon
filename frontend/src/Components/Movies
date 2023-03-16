@@ -1,0 +1,29 @@
+// import { useState, useEffect } from "react";
+// import { IMovies } from "../Types/TypeInterface";
+// import { getMovies } from "../Api";
+// import MoviesTable from "./MoviesTable";
+
+// const movies = () => {
+//     const [movies,setMovies] = useState<IMovies[]>([] as IMovies[]);
+
+//     const getData = async () => {
+//         const moviesFromApi = await getMovies();
+//         // const addressesFromApi = await getAddresses();
+//         setMovies(moviesFromApi);
+//         // SetAddresses(addressesFromApi)
+//         console.log({ moviesFromApi });
+//     };
+
+//     useEffect(() => {
+//         getData();
+//     },[]);
+
+//     return (
+//         <>
+//         <MoviesTable movies={movies}>
+//         </>
+
+//     );
+// }
+
+// export default movies
