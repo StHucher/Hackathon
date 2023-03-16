@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
 import MoviesTable from './Components/MoviesTable'
 import './App.css'
 import { getMovies, addNewMovie, deleteMov } from './Api'

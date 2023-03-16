@@ -11,35 +11,37 @@ export const AddMovieForm: FC<AddMovieFormProps> = ({ addNewMovie }) => {
     const [autorMovie, setAutorMovie] = useState('');
     const [genreMovie, SetGenreMovie] = useState('');
 
-    const onFormSubmit = (e: SyntheticEvent) => {
-        e.preventDefault();
-        if (titleMovie === '' || autorMovie === '' || genreMovie === ''){
-          alert('seed the field');
-        }
-        const newMovie: Partial<IMovies> = {
-            title: `${titleMovie}`,
-            autor: `${autorMovie}`,
-            genre: `${genreMovie}`
-        };
-       addNewMovie(newMovie);
-      
+	const onFormSubmit = (e: SyntheticEvent) => {
+		e.preventDefault();
+		if (titleMovie === '' || autorMovie === '' || genreMovie === '') {
+			alert('complete all the fields');
+		}
+		const newMovie: Partial<IMovies> = {
+			title: `${titleMovie}`,
+			autor: `${autorMovie}`,
+			genre: `${genreMovie}`
+		};
+		addNewMovie(newMovie);
     }
 
     //  useEffect(() => {getMovies()}, [addNewMovie]);
 
 
     return(
-        <form className='add-mov-form' onSubmit={onFormSubmit}>
-          <input className="input-form" onChange={(e) => {
-            setTitleMovie(e.target.value);
-          }} placeholder='Enter title' type="text" />
-          <input className="input-form" onChange={(e) => {
-            setAutorMovie(e.target.value);
-          }} placeholder='Enter autor' type="text" />
-          <input className="input-form" onChange={(e) => {
-            SetGenreMovie(e.target.value);
-          }} placeholder='Enter genre' type="text" />
-          <button className="input-button">Add New Movie</button>
-        </form>
+		<form className='add-mov-form' onSubmit={onFormSubmit}>
+			<input className="input-form" onChange={(e) => {
+				setTitleMovie(e.target.value);
+			}} placeholder='Enter title' type="text" />
+
+			<input className="input-form" onChange={(e) => {
+				setAutorMovie(e.target.value);
+			}} placeholder='Enter autor' type="text" />
+
+			<input className="input-form" onChange={(e) => {
+				SetGenreMovie(e.target.value);
+			}} placeholder='Enter genre' type="text" />
+			
+			<button className="input-button">Add New Movie</button>
+		</form>
     )
 }

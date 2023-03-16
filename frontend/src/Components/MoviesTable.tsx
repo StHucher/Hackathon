@@ -8,8 +8,6 @@ type MoviesTableProps = {
 }
 
 const MoviesTable: FC<MoviesTableProps> = ({movies, deleteMov}) => {
-
-
     return(
         <>
             <table className="table">
@@ -27,12 +25,9 @@ const MoviesTable: FC<MoviesTableProps> = ({movies, deleteMov}) => {
                             <td className="table-data">{m.genre}</td>
                             <td className="table-data"><button className="table-button" onClick={() => deleteMov(m.id)}>Delete</button></td>
                             </tr>; })}
-
-                </tbody>
-                    
+                </tbody> 
             </table>
         </>
-
     );
 }
 export default MoviesTable;
