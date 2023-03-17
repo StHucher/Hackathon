@@ -13,6 +13,7 @@ export const AddMovieForm: FC<AddMovieFormProps> = ({ addNewMovie }) => {
 
 	const onFormSubmit = (e: SyntheticEvent) => {
 		e.preventDefault();
+		
 		if (titleMovie === '' || autorMovie === '' || genreMovie === '') {
 			alert('complete all the fields');
 		}
@@ -23,8 +24,8 @@ export const AddMovieForm: FC<AddMovieFormProps> = ({ addNewMovie }) => {
 		};
 		addNewMovie(newMovie);
     }
-
-    //  useEffect(() => {getMovies()}, [addNewMovie]);
+	
+	useEffect(() => {}, [titleMovie]);
 
 
     return(
@@ -40,7 +41,7 @@ export const AddMovieForm: FC<AddMovieFormProps> = ({ addNewMovie }) => {
 			<input className="input-form" onChange={(e) => {
 				SetGenreMovie(e.target.value);
 			}} placeholder='Enter genre' type="text" />
-			
+
 			<button className="input-button">Add New Movie</button>
 		</form>
     )

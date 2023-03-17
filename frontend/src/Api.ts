@@ -6,7 +6,7 @@ export const getMovies = async () => {
     return moviesData
 };
 
-export const addNewMovie =async (mov: Partial<IMovies>) => {
+export const addNewMovie = async (mov: Partial<IMovies>) => {
     const response = await fetch("http://localhost:5153/api/Movies", {
         method:"POST",
         body: JSON.stringify(mov),

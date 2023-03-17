@@ -12,17 +12,28 @@ function App() {
   const handleAddNewMovie =async (newMovie: Partial<IMovies>) => {
     const response = await addNewMovie(newMovie);
     const movie = Array.isArray(response) ? response[0] : response;
-    console.log(movie);
-    setMovies(prevState => [...prevState, movie])
+    // console.log(movie);
+    // setMovies(prevState => [...prevState, movie])
+    getData();
   };
+//// test
+const getData = async () => {
+  const data = await getMovies();
+  setMovies(data);
+}
 
+////////
   const handleDeleteMovie =async (movieId: number) => {
     const response = await deleteMov(movieId);
     const updatedMovies = movies.filter(m => m.id !== movieId);
     setMovies(updatedMovies);
   };
 
-  useEffect(() => {getMovies().then(data => setMovies(data))},[]);
+  // useEffect(() => {getMovies().then(data => setMovies(data))},[]);
+
+  useEffect(() => {
+    getData();
+  },[])
 
 // console.log(movies);
 
